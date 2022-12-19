@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PetShop.Data;
 using System.Linq;
 
 namespace BooksStore.Controllers
 {
+    [AllowAnonymous]
     public class OrderController : Controller
     {
         private IOrderRepository repository;

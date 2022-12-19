@@ -20,7 +20,7 @@ namespace PetShop.Data
         [Required(ErrorMessage = "Quận, huyện không được bỏ trống")]
         public string Town { get; set; }
         public string Zip { get; set; }
-        [Required(ErrorMessage = "Đất nước không được bỏ trống")]
+        [Required(ErrorMessage = "Quốc gia không được bỏ trống")]
         public string Country { get; set; }
         [BindNever]
         public bool Shipped { get; set; }

@@ -17,7 +17,7 @@ namespace PetShop.ViewComponents
         {
             ViewBag.SelectedSpecies = RouteData?.Values["species"];
             return View(repository.Pet
-            .Select(x => x.GiongLoai)
+            .Select(x => x.Category)
             .Distinct()
             .OrderBy(x => x));
         }

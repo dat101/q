@@ -7,11 +7,11 @@
 <table class="table table-sm table-bordered table-striped">
     <tbody>
         <tr><th>Id</th><td>@Pet.Id</td></tr>
-        <tr><th>Hình ảnh</th><td><img src="@Pet.ProfilePicture" alt="@Pet.ThuCung" width="150" height="100" /></td></tr>
-        <tr><th>Thú cưng</th><td>@Pet.ThuCung</td></tr>
-        <tr><th>Giới tính</th><td>@Pet.GioiTinh</td></tr>
-        <tr><th>Giống loài</th><td>@Pet.GiongLoai</td></tr>
-        <tr><th>Giá</th><td>@String.Format(format, "{0:c0}", Pet.Gia)</td></tr>
+        <tr><th>Hình ảnh</th><td><img src="@Pet.PictureURL" alt="@Pet.PetName" width="150" height="100" /></td></tr>
+        <tr><th>Thú cưng</th><td>@Pet.PetName</td></tr>
+        <tr><th>Giới tính</th><td>@Pet.Gender</td></tr>
+        <tr><th>Danh mục</th><td>@Pet.Category</td></tr>
+        <tr><th>Giá</th><td>@String.Format(format, "{0:c0}", Pet.Price)</td></tr>
     </tbody>
 </table>
 <NavLink class="btn btn-warning" href="@EditUrl">Chỉnh sửa</NavLink>

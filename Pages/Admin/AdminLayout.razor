@@ -1,5 +1,4 @@
 ﻿@inherits LayoutComponentBase
-
 <div class="bg-info text-white p-2">
     <span class="navbar-brand ml-2">Administration</span>
 </div>
@@ -18,10 +17,16 @@
                      Match="NavLinkMatch.Prefix">
                 Đơn đặt hàng
             </NavLink>
+            <NavLink class="btn btn-outline-primary btn-block"
+                     href="/admin/role"
+                     ActiveClass="btn-primary text-white"
+                     Match="NavLinkMatch.Prefix">
+                Các vai trò
+            </NavLink>
         </div>
         <div class="col">
             @Body
-        </div>       
+        </div>
     </div>
 </div>
 

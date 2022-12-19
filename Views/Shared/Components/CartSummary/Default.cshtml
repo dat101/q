@@ -2,7 +2,7 @@
 <div class="position-relative">
     @if (Model.Lines.Count() > 0)
     {
-        <span class="position-absolute top-0 end-0  badge border border-light rounded-pill badge-danger" style="border-radius: 50%; width: 24px">
+        <span class="position-absolute top-0 end-0  badge border border-light badge-danger" style="border-radius: 50%; width: 24px">
             @if (Model.Lines.Sum(x => x.Quantity) >= 2)
             {
                 <text>@Model.Lines.Sum(x => x.Quantity)</text>
@@ -13,7 +13,7 @@
             }
         </span>
     }
-    <a class="btn btn-sm navbar-btn fa-2x" asp-page="/MyCart"
+    <a class="btn btn-sm navbar-btn text-black fa-2x" asp-page="/MyCart"
        asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
         <i class="fa fa-shopping-cart"></i>
     </a>

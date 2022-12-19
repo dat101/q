@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Sản phẩm";
+}
+@model PetShop.Models.ViewModels.PetListViewModel
+
+    @section breadcrum{
+        <div class="bg-light py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-0"><i class="fa fa-home pr-1"></i><a class="text-decoration-none" asp-action="Index" asp-controller="Home">Trang Chủ</a> <span class="mx-2 mb-0">/</span> <i class="fas fa-paw pr-1"></i> <strong class="text-black">Thú Cưng</strong></div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row m-1 p-1">
+
+        <div id="categories" class="col-3">
+            <div class="border p-4 rounded mb-4">
+                <h3 class="mb-3 h6 text-uppercase text-black d-block">Danh mục</h3>
+                <div>
+                    <vc:species-navigation />
+                </div>
+            </div>
+
+            <form asp-controller="Home" asp-action="SearchResult" method="get">
+                <div class="border p-4 rounded mb-4">
+                    <h3 class="mb-3 h6 text-uppercase text-black d-block">Lọc sản phẩm</h3>
+                    <div class="form-check mb-4">
+                        <input class="RadioType" type="checkbox" name="sortproduct" value="1">
+                        <label class="form-check-label">
+                            Giá tăng dần
+                        </label>
+                    </div>
+
+                    <div class="form-check mb-4">
+                        <input class="RadioType" type="checkbox" name="sortproduct" value="2">
+                        <label class="form-check-label">
+                            Giá giảm dần
+                        </label>
+                    </div>
+                    
+                    <div class="form-check mb-4">
+                        <input class="RadioType" type="checkbox" name="sortproduct" value="3">
+                        <label class="form-check-label">
+                            Ngày xa nhất
+                        </label>
+                    </div>
+                    <div class="form-check mb-4">
+                        <input class="RadioType" type="checkbox" name="sortproduct" value="4">
+                        <label class="form-check-label">
+                            Ngày gần nhất
+                        </label>
+                    </div>
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+
+        @foreach (var item in Model.Pet)
+        {
+            <div class="col-3" data-aos="fade-up">
+                <div class="card my-2 store-card">
+                    <a class="a-cleanup" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id">
+                        <img src="@item.PictureURL" class="card-img-top card-img-custom">
+                    </a>
+                    <div class="card-body">
+                        <partial name="CartTemplate" model="item" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div page-model="@Model.PagingInfo" page-action="Product" page-classes-enabled="true"
+         page-class="btn border" page-class-normal="btn-outline-primary"
+         page-class-selected="btn-primary" page-url-species="@Model.CurrentSpecies" class="btn-group pull-right m-1 pl-4">
+    </div>
+

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using PetShop.MyTagHelper;
 using PetShop.Data;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+
 namespace PetShop.Pages
 {
     public class MyCartModel : PageModel

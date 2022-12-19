@@ -1,15 +1,17 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-
-.text-white a {
+﻿.text-white a {
     text-decoration: none
 }
 
-* {
-    font-family: 'Lato', sans-serif;
+.ms-n5 {
+    margin-left: -40px;
 }
 
 .headline {
     margin: 80px 0 50px 0;
+}
+
+.home-footer {
+    background-color: #8D72E1
 }
 
 .nav-item a {
@@ -50,11 +52,20 @@
 
 .store-btn {
     transition: all 0.2s ease;
+    background-color: #8D72E1;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 5px;
 }
 
     .store-btn:hover {
-        background-color: forestgreen;
-        border: 1px solid forestgreen;
+        background-color: deepskyblue;
+        border: 1px solid deepskyblue;
     }
 
 #backtotop {
@@ -85,11 +96,11 @@
 
     #backtotop:hover {
         cursor: pointer;
-        background-color: #333;
+        background-color: #8D72E1;
     }
 
     #backtotop:active {
-        background-color: #555;
+        background-color: #8D72E1;
     }
 
     #backtotop.show {

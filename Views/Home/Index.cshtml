@@ -8,18 +8,27 @@
     <img src="https://happypaws.vn/wp-content/uploads/banner-welcome.png" width="100%" />
 </div>
 
+<div class="pt-5">
+    <form class="d-flex p-4" asp-controller="Home" asp-action="SearchResult" method="get">
+        <input class="form-control" placeholder="Tìm kiếm" type="text" name="SearchString">
+        <button class="btn btn-primary" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+</div>
+
 <div class="headline">
     <h3>Cún bán phổ biến</h3>
     <div class="btn1 bg-warning"></div>
 </div>
 
 <div class="owl-carousel owl-theme">
-    @foreach (var item in Model.Where(b => b.GiongLoai == "Chó"))
+    @foreach (var item in Model.Where(b => b.Category == "Chó"))
     {
         <div class="col-11" data-aos="fade-up">
             <div class="card my-2 store-card">
                 <a class="a-cleanup" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id">
-                    <img src="@item.ProfilePicture" class="card-img-top card-img-custom">
+                    <img src="@item.PictureURL" class="card-img-top card-img-custom">
                 </a>
                 <div class="card-body">
                     
@@ -37,14 +46,23 @@
         <h3>Mèo bán phổ biến</h3>
         <div class="btn1 bg-warning"></div>
     </div>
-
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+    </div>
     <div class="owl-carousel owl-theme">
-        @foreach (var item in Model.Where(b => b.GiongLoai == "Mèo"))
+        @foreach (var item in Model.Where(b => b.Category == "Mèo"))
         {
         <div class="col-11" data-aos="fade-up">
             <div class="card my-2 store-card">
                 <a class="a-cleanup" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id">
-                    <img src="@item.ProfilePicture" class="card-img-top card-img-custom">
+                    <img src="@item.PictureURL" class="card-img-top card-img-custom">
                 </a>
                 <div class="card-body">
                     <partial name="CartTemplate" model="item" />
@@ -58,4 +76,4 @@
         <a class="btn btn-primary" asp-action="ThuCung" asp-controller="Home">Xem thêm<i class="fas fa-angle-right ml-2"></i></a>
     </div>
 
-    <div class="zalo-chat-widget" data-oaid="579745863508352884" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="15" data-width="" data-height=""></div>
+<div class="zalo-chat-widget" data-oaid="579745863508352884" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="15" data-width="" data-height=""></div>

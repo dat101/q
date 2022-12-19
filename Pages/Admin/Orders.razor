@@ -4,7 +4,7 @@
             Orders="UnshippedOrders" ButtonLabel="Ship" OrderSelected="ShipOrder" />
 <OrderTable TableTitle="Những đơn đã giao"
             Orders="ShippedOrders" ButtonLabel="Reset" OrderSelected="ResetOrder" />
-<button class="btn btn-info" @onclick="@(e => UpdateData())">Refresh Data</button>
+<button class="btn btn-info" @onclick="@(e => UpdateData())">Làm mới</button>
 @code {
     public IOrderRepository Repository => Service;
     public IEnumerable<Order> AllOrders { get; set; }

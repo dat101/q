@@ -12,17 +12,17 @@
             <th>Số lượng</th>
             <th>Sản phẩm</th>
             <th class="text-right">Giá</th>
-            
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var line in Model.myCart.Lines)
         {
         <tr>
-            <td class="text-center"><img src="@line.Pet.ProfilePicture" asp-append-version="true" width="150" height="100" /></td>
+            <td class="text-center"><img src="@line.Pet.PictureURL" asp-append-version="true" width="50" height="50" /></td>
             <td class="text-center">@line.Quantity</td>
-            <td class="text-left">@line.Pet.ThuCung</td>
-            <td class="text-right">@String.Format(format, "{0:c0}", line.Pet.Gia)</td>
+            <td class="text-left">@line.Pet.PetName</td>
+            <td class="text-right">@String.Format(format, "{0:c0}", line.Pet.Price)</td>
             <td class="text-center">
                 <form asp-page-handler="Remove" method="post">
                     <input type="hidden" name="Id"

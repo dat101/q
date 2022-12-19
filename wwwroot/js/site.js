@@ -33,7 +33,6 @@ $(window).scroll(function () {
         btn.removeClass('show');
     }
 });
-
 btn.on('click', function (e) {
     e.preventDefault();
     $('html, body').animate({ scrollTop: 0 }, '300');
@@ -47,3 +46,14 @@ $("#ProfilePicture").on("change", function () {
     var output = document.getElementById("ImageUrlPreview");
     output.src = $(this).val();
 })
+
+$(".RadioType").click(function () {
+    $(".RadioType").prop("checked", false);
+    $(this).prop("checked", true);
+});
+
+let searchForm = document.querySelector('.search-form');
+
+document.querySelector('#search-btn').onclick = () => {
+    searchForm.classList.toggle('active');
+}

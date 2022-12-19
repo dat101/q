@@ -4,55 +4,66 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Pet Shop</title>
+    <link rel="stylesheet" href="~/css/style.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/Style.css" />
     <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
     <link href="~/lib/OwlCarousel2/assets/owl.carousel.min.css" rel="stylesheet" />
     <link href="~/lib/OwlCarousel2/assets/owl.theme.default.min.css" rel="stylesheet" />
+    <link rel="website icon" type="png" href="/Images/cart-cat_icon.png" />
+    <style>
+        body {
+            font-family: 'Paytone One', sans-serif;
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-warning border-bottom box-shadow mb-3">
             <div class="container">
                 <div class="logo">
-                    <a href="/Home/Index" class="shop-logo">
-                        <img src="https://ptpetshopvn.com/wp-content/uploads/2020/08/logo.png" height="100">
+                    <a asp-action="Index" asp-controller="Home" class="navbar-brand">
+                        <img src="/Images/petshop-logo.png" height="100">
                     </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon text-white"></span>
                 </button>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark ml-3" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                            <a class="nav-link text-white ml-3 fs-4" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark ml-3" asp-area="" asp-controller="Home" asp-action="ThuCung">Thú cưng</a>
+                            <a class="nav-link text-white ml-3 fs-4" asp-area="" asp-controller="Home" asp-action="Product">Sản phẩm</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark ml-3" asp-area="" asp-controller="Home" asp-action="Contact">Liên hệ</a>
+                            <a class="nav-link text-white ml-3 fs-4" asp-area="" asp-controller="Home" asp-action="Contact">Liên hệ</a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="text-right">
+            <div class="dropdown dropleft pr-4">
+                <a class="dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user fa-2x"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item">@await Html.PartialAsync("_LoginPartial")</a>
+                </div>
+            </div>
+            <div class="d-flex">
                 <vc:cart-summary />
             </div>
         </nav>
     </header>
-    <form class="d-flex p-4" asp-controller="Home" asp-action="TimKiemSanPham" method="get">
-        <input class="form-control" placeholder="Tìm kiếm" type="text" name="SearchString">
-        <button class="btn btn-primary" type="submit">
-            <i class="fas fa-search"></i>
-        </button>
-    </form>
     @RenderSection("breadcrum", required: false)
     <div class="container">
         <main role="main" class="pb-3">
@@ -61,7 +72,7 @@
         <a id="backtotop"></a>
     </div>
     <!-- Footer -->
-    <footer class="bg-primary text-center text-lg-start text-white">
+    <footer class="home-footer text-center text-lg-start text-white">
         <!-- Grid container -->
         <div class="container p-4">
             <!--Grid row-->
@@ -157,13 +168,13 @@
 
                     <ul class="list-unstyled">
                         <li>
-                            <p><i class="fas fa-map-marker-alt pe-2"></i>Cao Đẳng Kỹ Thuật Công Nghệ Nha Trang, Khánh Hòa</p>
+                            <p><i class="fas fa-map-marker-alt pe-2"></i>Cao Đẳng Kỹ Thuật Công Nghệ Nha Trang</p>
                         </li>
                         <li>
                             <p><i class="fas fa-phone pe-2"></i>01664977732</p>
                         </li>
                         <li>
-                            <p><i class="fas fa-envelope pe-2 mb-0"></i>maithanhdat101@gmail.com</p>
+                            <p><i class="fas fa-envelope pe-2"></i>PetShop2002@gmail.com</p>
                         </li>
                     </ul>
                 </div>
@@ -175,7 +186,7 @@
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
             © 2022 Copyright:
-            <a class="text-white" href="">Pet shop</a>
+            <a class="text-white" href="">PetShop</a>
         </div>
         <!-- Copyright -->
     </footer>

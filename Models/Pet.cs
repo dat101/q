@@ -14,30 +14,30 @@ namespace PetShop.Data
         [StringLength(30, ErrorMessage = "Không dài quá {1} kí tự và không dưới {2} kí tự" ,MinimumLength = 3)]
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Thú cưng")]
-        public string ThuCung { get; set; }
+        public string PetName { get; set; }
 
         [Display(Name = "Ngày tạo")]
         [Required(ErrorMessage = "Không được để trống")]
         [DataType(DataType.Date)]
-        public DateTime ThoiGian { get; set; }
+        public DateTime CreateAt { get; set; }
 
         [Required(ErrorMessage = "Không được để trống")]
         [StringLength(30, ErrorMessage = "Không dài quá {1} kí tự và không dưới {2} kí tự", MinimumLength = 1)]
         [Display(Name = "Giống loài")]
-        public string GiongLoai { get; set; }
+        public string Category { get; set; }
 
         [Range(1, 1000000000)]
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Giá")]
         [Column(TypeName = "decimal(18,2)")]
         [DataType(DataType.Currency)]
-        public decimal Gia { get; set; }
+        public decimal Price { get; set; }
         
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Giới tính")]
-        public string GioiTinh { get; set; }
+        public string Gender { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Hình ảnh")]
-        public string ProfilePicture { get; set; }
+        public string PictureURL { get; set; }
     }
 }

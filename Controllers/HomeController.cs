@@ -1,40 +1,46 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MimeKit;
 using PetShop.Data;
+using PetShop.Models;
 using PetShop.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace PetShop.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
-        public int PageSize = 3;
+        public int PageSize = 5;
         private IPetShopRepository repository;
+        private readonly IContactSender _contactSender;
 
         public string CurrentSpecies { get; private set; }
         public IQueryable<Pet> Pet { get; private set; }
 
-        public HomeController(IPetShopRepository repo)
+        public HomeController(IPetShopRepository repo, IContactSender contactSender)
         {
             repository = repo;
+            _contactSender = contactSender;
         }
 
-        public IActionResult Contact()
-        {
-            return View();
-        }
-
-        public IActionResult ThuCung(string species, int ProductPage = 1)
+        public IActionResult Product(string species, int ProductPage = 1)
         {
             var PetListVM = new PetListViewModel
             {
                 Pet = repository.Pet
-                    .Where(p => species == null || p.GiongLoai == species)
+                    .Where(p => species == null || p.Category == species)
                     .OrderBy(p => p.Id)
                     .Skip((ProductPage - 1) * PageSize)
                     .Take(PageSize),
@@ -45,7 +51,7 @@ namespace PetShop.Controllers
                     ItemsPerPage = PageSize,
                     TotalItems = species == null ?
                     repository.Pet.Count() :
-                    repository.Pet.Where(e => e.GiongLoai == species).Count()
+                    repository.Pet.Where(e => e.Category == species).Count()
                 },
                 CurrentSpecies = species
             };
@@ -57,39 +63,60 @@ namespace PetShop.Controllers
         {
             var pets = from b in repository.Pet
                         select b;
-           
+         
             return View(await pets.ToListAsync());          
         }
 
-        public async Task<IActionResult> TimKiemSanPham(string SearchString, string minPrice, string maxPrice, string StartDate, string EndDate)
+        [HttpGet]
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Contact(ContactFormModel model)
+        {
+            var msg = model.Name + Environment.NewLine + model.Body;
+
+            try {
+                await _contactSender.SendContactMailAsync(model.Email, model.Subject, msg);
+                ViewBag.SendSuccess = "Gửi thành công";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                ViewBag.SendFailed = "Gửi không thành công";
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> SearchResult(string SearchString, int SortProduct)
         {
             var pets = from b in repository.Pet
                        select b;
-            if (!string.IsNullOrEmpty(minPrice))
+
+            if (SortProduct == 1)
             {
-                var min = int.Parse(minPrice);
-                pets = pets.Where(b => b.Gia >= min);
+                pets = pets.OrderBy(b => b.Price);
             }
 
-            if (!string.IsNullOrEmpty(maxPrice))
+            if (SortProduct == 2)
             {
-                var max = int.Parse(maxPrice);
-                pets = pets.Where(b => b.Gia <= max);
-            }
-            if (!string.IsNullOrEmpty(StartDate))
-            {
-                var startdate = DateTime.Parse(StartDate);
-                pets = pets.Where(b => b.ThoiGian >= startdate);
+                pets = pets.OrderByDescending(b => b.Price);
             }
 
-            if (!string.IsNullOrEmpty(EndDate))
+            if (SortProduct == 3)
             {
-                var enddate = DateTime.Parse(EndDate);
-                pets = pets.Where(b => b.ThoiGian <= enddate);
+                pets = pets.OrderBy(b => b.CreateAt);
             }
+            if (SortProduct == 4)
+            {
+                pets = pets.OrderByDescending(b => b.CreateAt);
+            }          
+
             if (!String.IsNullOrEmpty(SearchString))
             {
-                pets = pets.Where(s => s.ThuCung!.Contains(SearchString));
+                pets = pets.Where(s => s.PetName!.Contains(SearchString));
             }
             return View(await pets.ToListAsync());
         }

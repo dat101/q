@@ -1,4 +1,6 @@
 ﻿@page "/admin"
+@model PetShop.Pages.Admin.IndexModel
+
 @{ Layout = null; }
 <!DOCTYPE html>
 <html>
@@ -15,10 +17,15 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        $("#ImageURL").on("change", function () {
+        $(document).ready(function () {
+            var output = document.getElementById('ImageUrlPreview');
+            output.src = $("#ProfilePicture").val();
+        })
+        $("#ProfilePicture").on("change", function () {
             var output = document.getElementById("ImageUrlPreview");
             output.src = $(this).val();
         })
+
     </script>
 </body>
 </html>

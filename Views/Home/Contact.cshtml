@@ -1,4 +1,9 @@
-﻿@section breadcrum{
+﻿@model PetShop.Models.ViewModels.ContactFormModel
+@{
+    ViewData["Title"] = "Liên hệ";
+}
+
+@section breadcrum{
     <div class="bg-light py-3">
         <div class="container">
             <div class="row">
@@ -15,58 +20,62 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="section-title">
-                    <h2>Contact Us</h2>
-                    <p>Gửi cho chúng tôi những phản hồi của bạn</p>
+                    <h2>Liên hệ với chúng tôi</h2>
+                    <p>Gửi những phản hồi của bạn</p>
                 </div>
             </div>
         </div>
         <div class="row flex-row-reverse">
             <div class="col-md-7 col-lg-8 m-15px-tb">
                 <div class="contact-form">
-                    <form action="/" method="post" class="contactform contact_form" id="contact_form">
-                        <div class="returnmessage valid-feedback p-15px-b" data-success="Your message has been received, We will contact you soon."></div>
-                        <div class="empty_notice invalid-feedback p-15px-b"><span>Please Fill Required Fields</span></div>
+                    <form method="post" asp-controller="Home" asp-action="Contact" enctype="multipart/form-data" class="contactform contact_form" id="contact_form">
+                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input id="name" type="text" placeholder="Full Name" class="form-control">
+                                    <input asp-for="Name" placeholder="Tên người dùng" class="form-control">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input id="email" type="text" placeholder="Email Address" class="form-control">
+                                    <input asp-for="Email" placeholder="Địa chỉ Email" class="form-control">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input id="subject" type="text" placeholder="Subject" class="form-control">
+                                    <input asp-for="Subject" placeholder="Tiêu đề" class="form-control">
+                                    <span asp-validation-for="Subject" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea id="message" placeholder="Message" class="form-control" rows="3"></textarea>
+                                    <textarea asp-for="Body" placeholder="Nội dung" class="form-control" rows="3"></textarea>
+                                    <span asp-validation-for="Body" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="send">
-                                    <a id="send_message" class="px-btn theme" href="#"><span>Contact Us</span> <i class="arrow"></i></a>
+                                    <button id="send_message" class="px-btn theme" type="submit" value="Send"><span>Liên hệ ngay</span><i class="arrow"></i></button>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+
             <div class="col-md-5 col-lg-4 m-15px-tb">
                 <div class="contact-name">
-                    <h5><i class="bi bi-envelope-fill pr-2"></i>Mail</h5>
-                    <p>thanhdat101@gmail.com</p>
+                    <h5><i class="fas fa-mail-bulk pr-3"></i>Email</h5>
+                    <p>PetShop2002@gmail.com</p>
                 </div>
                 <div class="contact-name">
-                    <h5><i class="bi bi-house-fill pr-2"></i> Địa chỉ</h5>
-                    <p>Cao Đẳng Kỹ Thuật Công Nghệ Nha Trang, <br>Khánh Hòa</p>
+                    <h5><i class="fas fa-home pr-3"></i> Địa chỉ</h5>
+                    <p>Cao Đẳng Kỹ Thuật Công Nghệ Nha Trang</p>
                 </div>
                 <div class="contact-name">
-                    <h5><i class="bi bi-telephone-fill pr-2"></i>Điện thoại</h5>
+                    <h5><i class="fas fa-phone-alt pr-3"></i>Điện thoại</h5>
                     <p>01664977732</p>
                 </div>
                 <div class="social-share nav">
@@ -84,7 +93,15 @@
         </div>
     </div>
 </section>
+@if (@ViewBag.SendSuccess != null)
+{
+    <div class="alert alert-success">@ViewBag.SendSuccess</div>
+}
 
+@if (@ViewBag.SendFailed != null)
+{
+    <div class="alert alert-danger">@ViewBag.SendFailed</div>
+}
 <div class="map">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3899.6931297705983!2d109.17095381476263!3d12.201271491364528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3170674637000ac9%3A0x51fd8a017075f390!2zVHLGsOG7nW5nIENhbyDEkeG6s25nIEvhu7kgVGh14bqtdCBDw7RuZyBOZ2jhu4cgTmhhIFRyYW5n!5e0!3m2!1svi!2s!4v1650262468094!5m2!1svi!2s" width="1300" height="700" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3899.6931297705983!2d109.17095381476263!3d12.201271491364528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3170674637000ac9%3A0x51fd8a017075f390!2zVHLGsOG7nW5nIENhbyDEkeG6s25nIEvhu7kgVGh14bqtdCBDw7RuZyBOZ2jhu4cgTmhhIFRyYW5n!5e0!3m2!1svi!2s!4v1650262468094!5m2!1svi!2s" width="1115" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>

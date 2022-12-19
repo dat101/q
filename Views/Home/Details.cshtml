@@ -8,7 +8,7 @@
     <div class="bg-light py-3">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 mb-0"><i class="fa fa-home pr-1"></i><a class="text-decoration-none" asp-action="Index" asp-controller="Home">Trang Chủ</a> <span class="mx-2 mb-0">/</span> <i class="fas fa-paw pr-1"></i><a class="text-decoration-none" asp-action="ThuCung" asp-controller="Home">Thú Cưng</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">@Model.ThuCung</strong></div>
+                <div class="col-md-12 mb-0"><i class="fa fa-home pr-1"></i><a class="text-decoration-none" asp-action="Index" asp-controller="Home">Trang Chủ</a> <span class="mx-2 mb-0">/</span> <i class="fas fa-paw pr-1"></i><a class="text-decoration-none" asp-action="ThuCung" asp-controller="Home">Thú Cưng</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">@Model.PetName</strong></div>
             </div>
         </div>
     </div>
@@ -18,16 +18,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img src="@Model.ProfilePicture" alt="@Model.ThuCung" class="img-fluid">
+                <img src="@Model.PictureURL" alt="@Model.PetName" class="img-fluid">
             </div>
             <div class="col-md-6">
-                <h2 class="text-black">@Model.ThuCung</h2>
-                <p><b>Giống Loài:</b> @Model.GiongLoai</p>
-                <p class="mb-4"><b>Giới Tính:</b> @Model.GioiTinh</p>
+                <h2 class="text-black">@Model.PetName</h2>
+
+                <p class="mb-4"><b>Giới Tính:</b> @Model.Gender</p>
 
                 <p>
                     <strong class="text-primary h4">
-                        @String.Format(format, "{0:c0}", Model.Gia)
+                        @String.Format(format, "{0:c0}", Model.Price)
                     </strong>
                 </p>
                 <p>
@@ -43,8 +43,8 @@
                             <button type="submit" class="btn btn-success float-right store-btn">
                                 <i class="fas fa-shopping-cart"></i> Mua
                             </button>
-                            </div>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>

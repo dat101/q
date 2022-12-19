@@ -20,34 +20,34 @@
     }
     <div class="form-group">
         <label>Thú cưng</label>
-        <ValidationMessage For="@(() => Pet.ThuCung)" />
-        <InputText class="form-control" @bind-Value="Pet.ThuCung" />
+        <ValidationMessage For="@(() => Pet.PetName)" />
+        <InputText class="form-control" @bind-Value="Pet.PetName" />
     </div>
     <div class="form-group">
         <label>Giới tính</label>
-        <ValidationMessage For="@(() => Pet.GioiTinh)" />
-        <InputText class="form-control" @bind-Value="Pet.GioiTinh" />
+        <ValidationMessage For="@(() => Pet.Gender)" />
+        <InputText class="form-control" @bind-Value="Pet.Gender" />
     </div>
     <div class="form-group">
-        <label>Giống loài</label>
-        <ValidationMessage For="@(() => Pet.GiongLoai)" />
-        <InputText class="form-control" @bind-Value="Pet.GiongLoai" />
+        <label>Danh mục</label>
+        <ValidationMessage For="@(() => Pet.Category)" />
+        <InputText class="form-control" @bind-Value="Pet.Category" />
     </div>
     <div class="form-group">
         <label>Giá</label>
-        <ValidationMessage For="@(() => Pet.Gia)" />
-        <InputNumber class="form-control" @bind-Value="Pet.Gia" />
+        <ValidationMessage For="@(() => Pet.Price)" />
+        <InputNumber class="form-control" @bind-Value="Pet.Price" />
     </div>
     <div class="form-group">
         <label>Url hình ảnh</label>
-        <ValidationMessage For="@(() => Pet.ProfilePicture)" />
-        <InputText class="form-control" @bind-Value="Pet.ProfilePicture" />
+        <ValidationMessage For="@(() => Pet.PictureURL)" />
+        <InputText class="form-control" @bind-Value="Pet.PictureURL" />
     </div>
     <div class="col-md-4 offset-4 text-center">
-        <img width="100%" id="ImageUrlPreview" />
+        <img width="100" id="ImageUrlPreview" />
     </div>
     <button type="submit" class="btn btn-@ThemeColor">Lưu</button>
-    <NavLink class="btn btn-success"
+    <NavLink class="btn btn-danger"
              href="/admin/pets">Trở về</NavLink>
 </EditForm>
 

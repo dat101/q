@@ -15,7 +15,7 @@
             <th>Id</th>
             <th>Hình ảnh</th>
             <th>Thú Cưng</th>
-            <th>Giống loài</th>
+            <th>Danh mục</th>
             <th>Giá</th>
             <td />
         </tr>
@@ -27,10 +27,10 @@
             {
                 <tr>
                     <td>@b.Id</td>
-                    <td><img src="@b.ProfilePicture" alt="@b.ThuCung" width="150" height="100" /></td>
-                    <td>@b.ThuCung</td>
-                    <td>@b.GiongLoai</td>
-                    <td>@String.Format(format, "{0:c0}", b.Gia)</td>
+                    <td><img src="@b.PictureURL" alt="@b.PetName" width="50" height="50" /></td>
+                    <td>@b.PetName</td>
+                    <td>@b.Category</td>
+                    <td>@String.Format(format, "{0:c0}", b.Price)</td>
                     <td>
                         <NavLink class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Thông tin"
                                  href="@GetDetailsUrl(b.Id)">
